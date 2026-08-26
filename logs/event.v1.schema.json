@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/subactor/api/logs/event.v1.schema.json",
+  "title": "Subactor API redacted event v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "event_id", "type", "occurred_at", "correlation_id"],
+  "properties": {
+    "version": {"const": "subactor.api-event/v1"},
+    "event_id": {"type": "string"},
+    "type": {"type": "string", "pattern": "^[a-z][a-z0-9_.-]+$"},
+    "occurred_at": {"type": "string", "format": "date-time"},
+    "correlation_id": {"type": "string"},
+    "data": {"type": "object", "description": "Allowlisted, zredagowana projekcja; bez credentiali i pełnego payloadu wykonawczego."}
+  }
+}

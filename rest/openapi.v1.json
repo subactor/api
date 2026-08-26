@@ -1,0 +1,11 @@
+{
+  "openapi": "3.1.0",
+  "info": {"title": "Subactor Task API", "version": "0.1.0-draft", "description": "Draft kontraktu. Brak publicznego serwera."},
+  "paths": {
+    "/v1/tasks/catalog": {"post": {"operationId": "taskCatalog", "responses": {"200": {"description": "Catalog receipt"}}}},
+    "/v1/tasks/plan": {"post": {"operationId": "taskPlan", "responses": {"200": {"description": "Plan without side effects"}}}},
+    "/v1/tasks": {"post": {"operationId": "taskSubmit", "responses": {"202": {"description": "Accepted task"}, "403": {"description": "Policy or grant denied"}}}},
+    "/v1/tasks/{request_id}": {"get": {"operationId": "taskStatus", "responses": {"200": {"description": "Task receipt"}}}},
+    "/v1/receipts/{receipt_id}": {"get": {"operationId": "receiptGet", "responses": {"200": {"description": "Redacted receipt"}}}}
+  }
+}

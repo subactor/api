@@ -95,4 +95,4 @@ api/
 
 ## Stan tego repozytorium
 
-Na moment utworzenia repozytorium zawiera ono wyłącznie ten dokument do konsultacji. Nie ma implementacji API, integracji z platformą, sekretów, konfiguracji produkcyjnej ani zmian w widoczności `subactor/shell`.
+Repozytorium zawiera publiczny szkic katalogów, wersjonowane kontrakty JSON Schema, draft OpenAPI oraz audyt granic `platform`/`shell`. Nie ma implementacji API, integracji z platformą, sekretów, konfiguracji produkcyjnej ani zmian w widoczności `subactor/shell`.

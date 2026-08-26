@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/subactor/api/contracts/task-plan.v1.schema.json",
+  "title": "Subactor TaskPlan v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "plan_id", "plan_hash", "effect", "status"],
+  "properties": {
+    "version": {"const": "subactor.task-plan/v1"},
+    "plan_id": {"type": "string"},
+    "plan_hash": {"type": "string", "pattern": "^sha256:[a-f0-9]{64}$"},
+    "effect": {"enum": ["read", "write"]},
+    "status": {"enum": ["ready", "blocked", "requires_approval"]},
+    "required_capabilities": {"type": "array", "items": {"type": "string"}},
+    "grant_ref": {"type": "string", "description": "Opaque reference only; never a bearer credential."},
+    "problems": {"type": "array", "items": {"type": "object"}}
+  }
+}

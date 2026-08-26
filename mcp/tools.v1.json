@@ -1,0 +1,12 @@
+{
+  "version": "subactor.mcp-tools/v1",
+  "status": "draft",
+  "tools": [
+    {"name": "task.catalog", "effect": "read", "maps_to": "TaskRequest.mode=catalog"},
+    {"name": "task.plan", "effect": "read", "maps_to": "TaskRequest.mode=plan"},
+    {"name": "task.submit", "effect": "write", "maps_to": "TaskRequest.mode=submit", "requires": ["plan_hash", "platform_grant"]},
+    {"name": "task.status", "effect": "read"},
+    {"name": "receipt.get", "effect": "read"}
+  ],
+  "prohibited": ["arbitrary_shell", "arbitrary_uri", "credential_read", "worktree_create"]
+}

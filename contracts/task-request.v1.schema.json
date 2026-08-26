@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/subactor/api/contracts/task-request.v1.schema.json",
+  "title": "Subactor TaskRequest v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "request_id", "intent", "mode"],
+  "properties": {
+    "version": {"const": "subactor.task-request/v1"},
+    "request_id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"},
+    "intent": {"type": "object", "additionalProperties": true, "description": "Niewykonywalna, strukturalna intencja; nie może zawierać sekretu, komendy shell ani URI wykonawczego."},
+    "mode": {"enum": ["catalog", "plan", "submit"]},
+    "idempotency_key": {"type": "string", "maxLength": 256},
+    "context_refs": {"type": "array", "items": {"type": "string", "maxLength": 512}, "maxItems": 32}
+  }
+}

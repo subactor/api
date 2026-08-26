@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/subactor/api/contracts/task-receipt.v1.schema.json",
+  "title": "Subactor TaskReceipt v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "receipt_id", "request_id", "status", "correlation_id"],
+  "properties": {
+    "version": {"const": "subactor.task-receipt/v1"},
+    "receipt_id": {"type": "string"},
+    "request_id": {"type": "string"},
+    "status": {"enum": ["accepted", "planned", "blocked", "running", "completed", "failed", "rejected"]},
+    "correlation_id": {"type": "string"},
+    "event_refs": {"type": "array", "items": {"type": "string"}},
+    "result_ref": {"type": "string"},
+    "problem": {"type": "object"}
+  }
+}
