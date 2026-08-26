@@ -47,16 +47,18 @@ api/
 
 ## Pierwszy minimalny zakres po zatwierdzeniu
 
-1. Przyjąć `wellmanifest/new-project` jako governance projektu oraz przypiąć jego rewizję.
-2. Zdefiniować wspólne, wersjonowane kontrakty żądania, planu, statusu, błędu i receiptu.
-3. Udostępnić tylko bezpieczny pionowy przekrój:
+1. **Najpierw przeprowadzić techniczny przegląd `subactor/platform` i `subactor/shell`.** Celem jest potwierdzenie rzeczywistych endpointów, metod uwierzytelniania, katalogów MCP, modeli żądań/odpowiedzi, lifecycle ticketów, preflightów capability, receiptów oraz zależności pakietowych. Nie wolno traktować obecnego opisu architektury jako substytutu tego przeglądu ani zgadywać endpointów.
+2. Sporządzić mapę potwierdzonych interfejsów i zdecydować, które będą stabilnie eksportowane przez `subactor/api`, a które pozostaną wyłącznie wewnętrzne dla platformy.
+3. Przyjąć `wellmanifest/new-project` jako governance projektu oraz przypiąć jego rewizję.
+4. Zdefiniować wspólne, wersjonowane kontrakty żądania, planu, statusu, błędu i receiptu wyłącznie na podstawie potwierdzonych zależności.
+5. Udostępnić tylko bezpieczny pionowy przekrój:
    - `task.catalog` / odczyt katalogu możliwości,
    - `task.plan` / planowanie bez skutków ubocznych,
    - `task.submit` / utworzenie delegacji,
    - `task.status` i `receipt.get` / obserwacja wyniku.
-4. Zaprojektować REST jako kontrakt referencyjny, a MCP i A2A jako równoważne adaptery do tych samych komend i zapytań.
-5. Zintegrować API z istniejącymi bramami platformy, zamiast wystawiać na zewnątrz bazę danych, connector server czy powłokę.
-6. Przetestować przykładem: LLM planuje publikację strony w trybie dry-run, dostaje brakujące wymagania lub receipt, ale nie może wykonać mutacji bez właściwego grantu.
+6. Zaprojektować REST jako kontrakt referencyjny, a MCP i A2A jako równoważne adaptery do tych samych komend i zapytań.
+7. Zintegrować API z istniejącymi bramami platformy, zamiast wystawiać na zewnątrz bazę danych, connector server czy powłokę.
+8. Przetestować przykładem: LLM planuje publikację strony w trybie dry-run, dostaje brakujące wymagania lub receipt, ale nie może wykonać mutacji bez właściwego grantu.
 
 ## Granice bezpieczeństwa
 
