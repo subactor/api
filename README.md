@@ -21,3 +21,12 @@ Każdy transport mapuje do tych samych kontraktów `TaskRequest`, `TaskPlan` i `
 - [`docs/PLATFORM-SHELL-INTERFACE-AUDIT.md`](docs/PLATFORM-SHELL-INTERFACE-AUDIT.md) — potwierdzone punkty integracji oraz obszary wymagające dalszego audytu.
 
 Pełne rozumienie celu i pytań decyzyjnych: [`PROPOZYCJA.md`](PROPOZYCJA.md).
+
+## Fasada konfiguracji systemu
+
+Ścieżki `GET /v1/config/*` odwzorowują read-only kontrakt
+`subactor/config`: scope node, konto providera, katalog źródeł, indeks
+zdolności i resolver `need -> sources`. Docelowy runtime API ma delegować te
+odczyty do Config, nie kopiować Registry, Strategy, Credential Vault ani ich
+danych. Zakres decyzji Supervisora może obejmować wszystkie zadeklarowane
+źródła, ale fasada nigdy nie nadaje uprawnienia do mutacji.
