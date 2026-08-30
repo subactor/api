@@ -1,6 +1,6 @@
 {
   "openapi": "3.1.0",
-  "info": {"title": "Subactor Task API", "version": "0.2.0-draft", "description": "Draft kontraktu. Brak publicznego serwera. Read-only konfiguracja node i kont jest federowana z subactor/config; API nie kopiuje sekretów ani authority."},
+  "info": {"title": "Subactor Task API", "version": "0.2.0-draft", "description": "Draft kontraktu. Brak publicznego serwera. Read-only scope i katalog źródeł konfiguracji są federowane z subactor/config; API nie kopiuje sekretów ani authority."},
   "x-subactor-modules": {
     "config": {
       "contract": "repo://github.com/subactor/config/api/openapi.v1.json",
@@ -30,6 +30,41 @@
         "x-subactor-upstream": "/v1/accounts/{provider}",
         "parameters": [{"name": "provider", "in": "path", "required": true, "schema": {"type": "string"}}],
         "responses": {"200": {"description": "Versioned account scope projection"}, "404": {"description": "Unknown provider account"}}
+      }
+    },
+    "/v1/config/sources": {
+      "get": {
+        "operationId": "configSources",
+        "description": "Federated, secret-free configuration source catalog. Every source is evidence-only.",
+        "x-subactor-upstream": "/v1/sources",
+        "parameters": [{"name": "provides", "in": "query", "required": false, "schema": {"type": "string"}}],
+        "responses": {"200": {"description": "Configuration sources and current-node availability"}, "400": {"description": "Invalid capability id"}}
+      }
+    },
+    "/v1/config/sources/{source_id}": {
+      "get": {
+        "operationId": "configSource",
+        "description": "One source with owners, capabilities, trust, locations and current-node availability.",
+        "x-subactor-upstream": "/v1/sources/{source_id}",
+        "parameters": [{"name": "source_id", "in": "path", "required": true, "schema": {"type": "string"}}],
+        "responses": {"200": {"description": "Configuration source"}, "404": {"description": "Unknown source"}}
+      }
+    },
+    "/v1/config/capabilities": {
+      "get": {
+        "operationId": "configCapabilities",
+        "description": "Declared mapping from system capabilities to configuration sources.",
+        "x-subactor-upstream": "/v1/capabilities",
+        "responses": {"200": {"description": "Capability index"}}
+      }
+    },
+    "/v1/config/resolve": {
+      "get": {
+        "operationId": "configResolve",
+        "description": "Resolve an exact need to all matching evidence sources without creating authority.",
+        "x-subactor-upstream": "/v1/resolve",
+        "parameters": [{"name": "need", "in": "query", "required": true, "schema": {"type": "string"}}],
+        "responses": {"200": {"description": "Configuration source resolution"}, "400": {"description": "Missing or invalid capability id"}}
       }
     }
   }
