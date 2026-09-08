@@ -3,20 +3,23 @@
   "schema": "wellmanifest.docs/document/v1",
   "id": "documentation-verification",
   "kind": "information",
-  "version": 1,
+  "version": 2,
   "title": "Protected API documentation verification",
   "status": "proposed",
   "owner": "subactor/api",
   "created": "2026-09-08",
   "updated": "2026-09-08",
   "review_after": "2026-09-15",
-  "source_revision": "6b85e810d128b229856e02ea138d38d5f8757abb",
+  "source_revision": "70ed9db6d73b90d4b9f20f0c163c6e636ffd5cf0",
   "affected_repositories": [
     "subactor/api"
   ],
   "evidence": [
     "https://github.com/subactor/api/issues/4",
-    "https://github.com/wellmanifest/docs/commit/ebe7501063ef4f3e63ded610c2d3183010ca636e"
+    "https://github.com/wellmanifest/docs/commit/ebe7501063ef4f3e63ded610c2d3183010ca636e",
+    "https://github.com/subactor/api/pull/5",
+    "https://github.com/subactor/onedev-agent/pull/250",
+    "receipt:api-docs-gate-20260908/deployment-verified.json#sha256:49833bc183732bbf5e50209fe47d52042c6826a19bbe73f08d921ee1b4a3bfa3"
   ]
 }
 ---
@@ -52,3 +55,14 @@ This structural check does not certify semantic truth, all IDE/LLM sessions, eve
 ## Publication and rollback
 
 Publish adoption and executor source independently, deploy only the approved API command delta and verify a real canary on its exact head/current base before independent publication. Preserve the previous configuration for rollback. Global acceptance stays in the [canonical plan](https://github.com/subactor/docs/blob/main/architecture/refactoring/wellmanifest-enforcement.md).
+
+
+## Version 2 — deployed protected documentation gate
+
+API #5 was independently merged as `70ed9db6d73b90d4b9f20f0c163c6e636ffd5cf0`, review `5146749055`, tested/merged tree `07aba2ea2c3e74073802bfe6afa47c561242e0ab`. OneDev #250 was independently merged as `49c0588a284a0cdc37891537d2005ee31fab9c26`, review `5146755820`, tested/merged tree `3c3f70a102883a1a600a48e3ef37fb26e490dd58`. Source CI passed the API JSON syntax check and five OneDev gates including 703 tests.
+
+Deployment changed only the API commands from one gate to two: existing OpenAPI JSON syntax validation and installed Docs. Both services read back configuration SHA-256 `3deb6420d2a5ae5661042d9a84bdadcea1c2acc068c92a00a2b12bf53a3f89a9`; previous configuration: `111713746a65e45bdf85c585bf6639c1fe9c53fa6fd2410612d724621a9028ca`. Image `sha256:c8ca169ab452bc2d0ae484c4f32dc488d47ba6bd417b5e3fbb5c255d0e1d50c2`, environment, other mounts, networks, timeout and other profiles were preserved. The switch observed empty pending/running queues. Previous Compose selection remains available for rollback.
+
+This material documentation revision is the real post-deployment canary. Both protected gates must succeed on its exact head merged with the current base before independent publication; terminal head/base/tree and review bindings are recorded by external publication receipts. The existing protected Validator profile requires onedev/local-verify and has scheduled_scan=false; publication therefore uses the explicit trusted local adapter under session authorization. This change does not modify the protected registry, timers or publication checks.
+
+Docs itself needed no source change for the observed gap. API adoption and executor wiring required correction. Structural document validation does not certify semantic truth, all IDE/LLM sessions, other profiles, untested operating systems or bypass permissions. API syntax validation is not semantic OpenAPI validation or an endpoint behavior test. Those wider criteria remain open in the canonical plan.

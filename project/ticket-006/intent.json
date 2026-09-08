@@ -1,0 +1,16 @@
+{
+  "schema": "new-project.intent/v3",
+  "ticket": "ticket-006",
+  "summary": "Verify the deployed API Docs gate with material deployment evidence",
+  "workstream": "integration",
+  "allowedPaths": [
+    "docs/information/documentation-verification.md",
+    "project/ticket-006/**"
+  ],
+  "forbiddenPaths": [
+    ".env",
+    "docker/**"
+  ],
+  "dependsOn": [],
+  "conflictsWith": []
+}
