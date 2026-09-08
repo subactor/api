@@ -1,0 +1,20 @@
+{
+  "schema": "new-project.intent/v3",
+  "ticket": "ticket-004",
+  "summary": "Adopt and enforce protected API documentation verification",
+  "workstream": "integration",
+  "allowedPaths": [
+    "docs/information/documentation-verification.md",
+    "docs/README.md",
+    "project/ticket-004/**",
+    "AGENTS.md",
+    ".governance/docs.json",
+    ".gitignore"
+  ],
+  "forbiddenPaths": [
+    ".env",
+    "docker/**"
+  ],
+  "dependsOn": [],
+  "conflictsWith": []
+}
