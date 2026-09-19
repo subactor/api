@@ -18,3 +18,11 @@ __pycache__/
 
 # Canonical ticket worktrees
 /.worktrees/
+
+!.github/
+!.github/**
+!.cursor/
+!.cursor/**
+!.cursor*
+!.aider*
+!.aider.conf.yml
